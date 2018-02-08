@@ -2,7 +2,9 @@ version: '3'
 
 services:
   puppeteer:
-    build: .
+    image: pluswerk/convert-svg-to-png
+    container_name: puppeteer
+    # volumes only needed if you want to use local file system
     volumes:
-      - ./:/app/data
+      - ./:/app/
     entrypoint: ["sh", "-c", "sleep infinity"]

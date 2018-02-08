@@ -4,6 +4,4 @@ WORKDIR /app
 
 RUN yarn global add convert-svg-to-png
 
-USER 1000:1000
-
-WORKDIR /app/data
+#USER 1000:1000
