@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  puppeteer:
+    build: .
+    volumes:
+      - ./:/app/data
+    entrypoint: ["sh", "-c", "sleep infinity"]
