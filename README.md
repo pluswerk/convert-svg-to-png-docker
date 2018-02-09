@@ -1,5 +1,5 @@
 # convert-svg-to-png-docker
-Opinionated puppeteer Headless Chrome
+Opinionated [convert-svg-to-png](https://github.com/NotNinja/convert-svg/tree/master/packages/convert-svg-to-png) Docker Image
 
 example docker-compose.yml:
 ````yaml
