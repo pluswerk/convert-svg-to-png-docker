@@ -2,6 +2,10 @@ FROM pluswerk/puppeteer
 
 WORKDIR /app
 
-RUN yarn global add convert-svg-to-png
+RUN yarn add convert-svg-to-png express body-parser
 
-#USER 1000:1000
+COPY index.mjs /app/
+
+CMD ["node", "--experimental-modules", "index.mjs"]
+
+EXPOSE 3000
