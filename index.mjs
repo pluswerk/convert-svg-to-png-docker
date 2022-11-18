@@ -1,6 +1,7 @@
 import convertSvgToPng from "convert-svg-to-png";
 import express from "express";
 import bodyParser from "body-parser";
+import axios from "axios";
 
 const serverPort = 3000;
 const app = express();
@@ -13,6 +14,27 @@ app.use(bodyParser.text({
   type: '*/*',
   limit: '10mb',
 }));
+
+app.get('/convert', async (req, res) => {
+  try {
+    const options = {};
+    options.background = req.query.background || '#fff';
+    options.baseUrl = req.query.baseUrl || 'file:///app';
+    options.scale = req.query.scale || 1;
+    if (req.query.baseFile) options.baseFile = req.query.baseFile;
+    if (req.query.height) options.height = req.query.height;
+    if (req.query.width) options.width = req.query.width;
+    console.log('convert svg', options);
+    var resp = await axios.get(req.query.url);
+    var svg = resp.data;
+    const png = await converter.convert(svg, options);
+    res.set('Content-Type', 'image/png');
+    res.send(png);
+  } catch (e) {
+    res.status(500).send(e.message);
+    console.log('error', e);
+  }
+});
 
 app.post('/convert', async (req, res) => {
   try {

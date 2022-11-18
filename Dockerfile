@@ -1,8 +1,8 @@
-FROM pluswerk/puppeteer
+FROM ghcr.io/puppeteer/puppeteer:latest
 
 WORKDIR /app
 
-RUN yarn add convert-svg-to-png express body-parser
+RUN yarn add convert-svg-to-png express body-parser axios
 
 COPY index.mjs /app/
 
