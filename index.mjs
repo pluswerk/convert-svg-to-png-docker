@@ -28,9 +28,13 @@ app.get('/convert', async (req, res) => {
     console.log('convert url', req.query.url);
     var resp = await axios.get(req.query.url);
     var svg = resp.data;
-    const png = await converter.convert(svg, options);
-    res.set('Content-Type', 'image/png');
-    res.send(png);
+    if (svg.trim().toLowerCase().startsWith("<svg")) {
+      const png = await converter.convert(svg, options);
+      res.set('Content-Type', 'image/png');
+      res.send(png);
+    } else {
+      res.redirect(req.query.url);
+    }
   } catch (e) {
     res.status(500).send(e.message);
     console.log('error', e);
