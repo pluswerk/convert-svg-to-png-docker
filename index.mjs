@@ -25,6 +25,7 @@ app.get('/convert', async (req, res) => {
     if (req.query.height) options.height = req.query.height;
     if (req.query.width) options.width = req.query.width;
     console.log('convert svg', options);
+    console.log('convert url', req.query.url);
     var resp = await axios.get(req.query.url);
     var svg = resp.data;
     const png = await converter.convert(svg, options);
